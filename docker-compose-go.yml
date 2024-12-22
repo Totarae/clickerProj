@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres:latest
+    #image: postgres #use latest image
+    ports:
+     - 5432:5432 #enable external ports
+    restart: always
+    environment:
+     - POSTGRES_PASSWORD=postgres_passwd #superuser password
+     - POSTGRES_USER=postgres  #superuser name
+     - POSTGRES_DB=banners
+    volumes: 
+     - banner_database_data:/var/lib/postgresql/data #persist data even if container shuts down
+
+volumes:
+  banner_database_data:
